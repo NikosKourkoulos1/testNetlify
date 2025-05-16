@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway # Uses Netlify's Git Gateway for authentication with your Git repo
+  branch: main # Or master, depending on your default branch name
+
+media_folder: "img/uploads" # Location where uploaded media will be stored
+public_folder: "/img/uploads" # The src attribute for uploaded media will begin with this path
+
+collections:
+  - name: "pages" # Used in routes, e.g., /admin/#/collections/pages
+    label: "Pages" # Used in the UI
+    folder: "." # The path to the folder where the documents are stored (root for pages)
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "base.njk"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+  # Example for a blog (you'd create a 'posts' folder for this)
+  # - name: "posts"
+  #   label: "Blog Posts"
+  #   folder: "posts" # Store posts in a 'posts' subfolder
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   fields:
+  #     - {label: "Layout", name: "layout", widget: "hidden", default: "base.njk"} # Or a specific post layout
+  #     - {label: "Title", name: "title", widget: "string"}
+  #     - {label: "Publish Date", name: "date", widget: "datetime"}
+  #     - {label: "Body", name: "body", widget: "markdown"}
